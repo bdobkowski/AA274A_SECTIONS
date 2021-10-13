@@ -3,10 +3,9 @@
 Now, let's explore teleoperation with the TurtleBot.
 
 \begin{enumerate}
-\item ssh into the TurtleBot from another terminal window. We can start exploring the existing ROS topics. What are all the messages that are being published right now? In particular, look at the odom topic. What is the message type being published to this topic and what information is contained within these messages? HINT: rostopic info odom might help.
+\item We can start exploring the existing ROS topics. What are all the messages that are being published right now? In particular, look at the odom topic. What is the message type being published to this topic and what information is contained within these messages? HINT: rostopic info odom might help.
 \item In a new terminal window, begin teleoperating the robot by running:
 \begin{lstlisting}
-# run this command on the laptop
 roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch
 \end{lstlisting}
 \item Try to teleop the TurtleBot back to $(0,0,0)$.

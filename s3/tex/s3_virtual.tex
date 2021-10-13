@@ -12,17 +12,16 @@
 \usepackage[margin=1cm]{caption}
 \usepackage{subcaption}
 \usepackage{tcolorbox}
-\usepackage{url}
+\usepackage{color}
 \usepackage{hyperref}
-
-\definecolor{editorGray}{rgb}{0.95, 0.95, 0.95}
-
 \hypersetup{
     colorlinks=true,
     linkcolor=blue,
     filecolor=magenta,      
     urlcolor=blue,
 }
+\definecolor{editorGray}{rgb}{0.95, 0.95, 0.95}
+
 
 \lstset{%
     % Basic design
@@ -36,7 +35,6 @@
     firstnumber=1,
     numberfirstline=false,
     }
-    
 \lstset{
     literate={~} {$\sim$}{1}
 }
@@ -57,7 +55,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 \renewcommand\headrulewidth{0.4pt}
 \setlength\headheight{15pt}
-\input{preamble}
 
 \usepackage{outlines}
 
@@ -72,7 +69,7 @@
 
 \setlength{\parindent}{0in}
 
-\title{AA 274A: Principles of Robot Autonomy I \\ Section 2: Workstation and ROS}
+\title{AA 274A: Principles of Robot Autonomy I \\ Section 3 (Virtual): Introduction to Turtlebot and Gazebo}
 \date{}
 
 \begin{document}
@@ -80,23 +77,22 @@
 \maketitle
 \pagestyle{fancy}
 
-Our goals for this section:
-\begin{enumerate}
-    \item Learn useful workstation commands.
-    \item Learn how group login accounts will work for the rest of the class. 
-    \item Gain a basic understanding of the Robot Operating System (ROS) by implementing classes, nodes, and topics. Use catkin build tools and other commands to interact with ROS through the terminal.
+Our goals for this section: \begin{enumerate}
+    % \item Become familiar with the Turtlebot hardware.
+    \item Gain a basic understanding of the Turtlebot software.
+    \item Use basic tools for interacting with the Turtlebot.
 \end{enumerate}
 
-% \textbf{NOTE}: The commands below were written from the perspective of a Ubuntu user. If you are using the VMware VM then these commands should work within it. If you are using Docker then remember to use the \texttt{run.sh} script from last section to run the ROS commands. Also, be mindful of the paths you use to execute files (keep in mind Docker's remapping of directories).
+% \input{sec_turtlebot_hw}
 
-To obtain the code for this section, navigate to your section directory from last time, and execute the following
+% \input{sec_turtlebot_sw}
 
-\begin{lstlisting}
-git pull
-\end{lstlisting}
+\input{sec_turtlebot_sw_scpd}
 
-\input{sec_problem2}
+\input{sec_turtlebot_teleop_scpd}
 
-\input{sec_problem1}
+\section*{Cleanup}
+
+Towards the end of your section, when you're about to log out, please shut down all of your running processes (like roscore or any publishers/subscribers) and clean up your catkin workspaces for the next groups. In particular, commit and remove the code you wrote for the section as well as any catkin packages you created for the section within \texttt{catkin\_ws/src}.
 
 \end{document}

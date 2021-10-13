@@ -1,43 +1,42 @@
 \section{The Turtlebot Software}
-
-If you're using Docker, first update the \texttt{aa274-docker} repository:
-
-\begin{lstlisting}
-git pull
-./build_docker.sh
-\end{lstlisting}
-
-Most of the forward-facing Turtlebot software you will work with is located in the \texttt{asl\_turtlebot} repository on Github. To get it, go to \texttt{\textasciitilde/catkin\_ws/src} in your VM (or wherever your catkin workspace is if you're using Docker) and if the \texttt{asl\_turtlebot} repository doesn't already exist, run:
+Most of the forward-facing Turtlebot software you will work with is located in the \texttt{asl\_turtlebot} repository on Github. To get it, go to \texttt{\textasciitilde/catkin\_ws/src} on the provided laptop and if the \texttt{asl\_turtlebot} repository doesn't already exist, run:
 
 \begin{lstlisting}
+# run this command on the laptop
 git clone https://github.com/StanfordASL/asl_turtlebot.git
 \end{lstlisting}
 
-or if the repo does exist, then \texttt{cd} into the directory and run:
+or if the repository does exist, then \texttt{cd} into the directory and run:
 
 \begin{lstlisting}
+# run this command on the laptop
 git pull
 \end{lstlisting}
 
 to update to the latest code.
 
-Since we downloaded a new catkin package, we need to rebuild the workspace by running the following from the \texttt{\textasciitilde/catkin\_ws} directory (or if you're using Docker, then \texttt{cd} to the \texttt{aa274-docker} directory and prepend the following command with \texttt{./run.sh}, as usual).
+Since we downloaded a new catkin package, we need to rebuild the workspace by running the following from the \texttt{\textasciitilde/catkin\_ws} directory.
 
 \begin{lstlisting}
+# run this command on the laptop
 catkin_make
 \end{lstlisting}
 
 \subsection{Turtlebot bring up}
-First, we must take some steps to configure the VM in order to be able to connect to a TurtleBot. You will see $rostb3.sh$ and $roslocal.sh$ in the \texttt{asl\_turtlebot} folder. These files are important for telling your computer where roscore lives. Take a look at the files. Can you figure out roughly what is it doing?
+First, we must take some steps to configure the laptop in order to be able to connect to a TurtleBot. You will see $rostb3.sh$ and $roslocal.sh$ in the \texttt{asl\_turtlebot} folder. These files are important for telling your computer where roscore lives. %Take a look at the files. Can you figure out roughly what is it doing? 
+Specifically, for the laptop to communicate (send/receive messages) with the robot, it needs to know the network address of the robot. To do so, three environment variables are important: \texttt{ROS\_MASTER\_URI}, \texttt{ROS\_HOSTNAME}, and \texttt{ROS\_IP}.
+
 
 We will now set up these scripts so it's easy to switch between them.
 \begin{enumerate}
 	% \item Copy those files in your home directory.
 	\item Connect to the correct network. (The TA will tell you which one it is.)
-	\item Edit \texttt{rostb3.sh} accordingly.
+	\item Edit \texttt{rostb3.sh} accordingly: define \texttt{TURTLEBOT\_NAME} at the start of the script.
+	\item Source \texttt{rostb3.sh}.
 	\item Open your \texttt{.bashrc} with a text editor. All the shell commands in this file will get run whenever you open a terminal.
 	Add the following lines to the end of the file:
 	\begin{lstlisting}
+# run these commands on the laptop
 alias rostb3='source ~/catkin_ws/src/asl_turtlebot/rostb3.sh'
 alias roslocal='source ~/catkin_ws/src/asl_turtlebot/roslocal.sh'
 export TURTLEBOT3_MODEL=burger
@@ -46,12 +45,14 @@ export TURTLEBOT3_MODEL=burger
 	IMPORTANT: This will create an alias for rostb3 and roslocal. If roscore is to run on the TurtleBot, and you want to run nodes from your computer (not ssh), you must type rostb3 EVERY TIME you open a terminal window. Otherwise, if you want to run things locally on your machine, you should run roslocal.
 	\item For these modifications to take effect in the current terminal, run:
 	\begin{lstlisting}
+# run this command on the laptop
 source ~/.bashrc
 	\end{lstlisting}
 \end{enumerate}
 
 Next, in a terminal window, ssh into the TurtleBot using:
 \begin{lstlisting}
+# run this command on the laptop
 ssh aa274@<TurtleBot Name>.local
 \end{lstlisting}
 
@@ -59,25 +60,10 @@ with the password \texttt{aa274}. This remotely logs into the onboard robot comp
 and drivers for TurtleBot operation have been pre-installed so we can go ahead and run:
 
 \begin{lstlisting}
+# run this command on the robot
 roslaunch turtlebot3_bringup turtlebot3_core.launch	
 \end{lstlisting}
 
 to launch core packages to start up the TurtleBot.
-
-\textbf{SCPD Students:} Instead of ssh-ing into the robots, you'll be interfacing with TurtleBots in Gazebo on the workstation. Download TurboVNC (if you haven't already), connect to the Stanford VPN with your suid, and ask your TA for login instructions.
-
-Once logged in, start roscore:
-
-\begin{lstlisting}
-roscore -p $ROS_PORT
-\end{lstlisting}
-
-In a new terminal window, run the Gazebo environment:
-
-\begin{lstlisting}
-roslaunch turtlebot3_gazebo turtlebot3_world.launch
-\end{lstlisting}
-
-Because you don't have to switch between simulated and actual TurtleBots, there is no need to set up \texttt{rostb3.sh} and \texttt{roslocal.sh}. Once you have Gazebo running, you''re ready to go.
 
 {\bf Problem 1: Once this is all running, which rostopics are available? Paste this list in your submission.}

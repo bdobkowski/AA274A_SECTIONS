@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import rospy
 from aa274_s2.msg import MyMessage
@@ -17,3 +17,4 @@ if __name__ == '__main__':
         publisher()
     except rospy.ROSInterruptException:
         pass
+ 

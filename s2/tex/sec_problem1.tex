@@ -65,6 +65,12 @@ Note that it references message types defined in other message files.
 
 ROS uses these pre-defined message types so that nodes can know how to communicate with one another over a given topic.
 
+Within the code folder for this section, navigate to the \texttt{msg} folder. As a reminder, you can clone the section code on genbu using 
+
+\begin{lstlisting}
+git clone https://github.com/PrinciplesofRobotAutonomy/AA274A_SECTIONS.git
+\end{lstlisting}
+
 \textbf{Problem 1: Create your own message file consisting of multiple standard data types. This can be bool, string, float64, char, int64, and many more.}
 
 See the \href{http://docs.ros.org/kinetic/api/std_msgs/html/index-msg.html}{documentation} for the full list of standard messages.
@@ -77,7 +83,7 @@ See the \href{http://docs.ros.org/kinetic/api/std_msgs/html/index-msg.html}{docu
 \subsection{Publishing and Subscribing}
 Now that we've created our custom message type, let's create a script that will publish a message to a topic. All our code will be in Python, using a library called \texttt{rospy}, but you can also write the same scripts in C++ using the \texttt{roscpp} library. 
 
-Take a look through the \texttt{publisher.py} and \texttt{subscriber.py} files located in the code folder of this section to see how \texttt{rospy} works.
+Take a look through the \texttt{publisher.py} and \texttt{subscriber.py} files located in the code folder of this section to see how \texttt{rospy} works. 
 
 \textbf{Problem 2: Create a publisher and subscriber that publish and subscribe to your custom message type, respectively.}
 
@@ -101,7 +107,7 @@ catkin_create_pkg aa274_s2 std_msgs rospy message_generation
 
 This will create a new package called \texttt{aa274\_s2} in the \texttt{src} folder. The last three arguments are library dependencies that this package will require to run.
 
-Now change into the \texttt{aa274\_s2} directory. You will see that there are three items in it: \texttt{CMakeLists.txt}, \texttt{package.xml}, and an empty \texttt{src} folder. Go ahead and copy the scripts folder and the msg folder from the section code into \texttt{aa274\_s2}.
+Now change into the \texttt{aa274\_s2} directory. You will see that there are three items in it: \texttt{CMakeLists.txt}, \texttt{package.xml}, and an empty \texttt{src} folder. Go ahead and copy the scripts folder and the msg folder from the section code into \texttt{aa274\_s2}. Leave the \texttt{src} folder empty.
 
 % If you're using Docker, remember that you can change files as normal (without Docker) under the \texttt{catkin\_ws} folder, since they are mapped to the Docker container during use. Now, let's take a few minutes to inspect those first two files.
 
@@ -142,8 +148,8 @@ The first command calls catkin to build our package, and the second command upda
 Now, you should have a fully functional package! You can now run your scripts in one of two ways. You can directly treat them like Python scripts by switching into the scripts folder and running 
 
 \begin{lstlisting}
-python publisher.py
-python subscriber.py
+python3 publisher.py
+python3 subscriber.py
 \end{lstlisting}
 
 Or, you can run your script from anywhere using the \texttt{rosrun} command:

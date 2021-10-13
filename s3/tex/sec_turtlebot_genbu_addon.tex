@@ -1,0 +1,42 @@
+\section{Transfer to Genbu}
+Because the final project this year will be remote (in simulation), we need to know how to run everything on the hardware \textit{and} simulated on Genbu.
+
+The following commands run a simulated version of what you just did on the robot. See \texttt{s3\_virtual.pdf} for detailed instructions.
+
+To get the \texttt{asl\_turtlebot} repository on your Genbu account, go to \texttt{\textasciitilde/catkin\_ws/src} and run:
+
+\begin{lstlisting}
+git clone https://github.com/StanfordASL/asl_turtlebot.git
+\end{lstlisting}
+
+Since we downloaded a new catkin package, we need to rebuild the workspace by running the following from the \texttt{\textasciitilde/catkin\_ws} directory.
+
+\begin{lstlisting}
+catkin_make
+\end{lstlisting}
+
+\subsection{Turtlebot bring up}
+Once logged in to Genbu, start roscore:
+
+\begin{lstlisting}
+roscore -p $ROS_PORT
+\end{lstlisting}
+
+In a new terminal window, run the Gazebo environment:
+
+\begin{lstlisting}
+roslaunch turtlebot3_gazebo turtlebot3_world.launch
+\end{lstlisting}
+
+\subsection{Turtlebot teleoperation}
+\begin{enumerate}
+\item In a new terminal window, begin teleoperating the robot by running:
+\begin{lstlisting}
+roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch
+\end{lstlisting}
+\item Try to teleop the TurtleBot back to $(0,0,0)$.
+\end{enumerate}
+
+\subsection{Genbu Cleanup}
+
+When you're about to log out, please shut down all of your running processes (like roscore or any publishers/subscribers) and clean up your catkin workspaces for the next groups. In particular, commit and remove the code you wrote for the section as well as any catkin packages you created for the section within \texttt{catkin\_ws/src}. 
